@@ -15,6 +15,14 @@ Content-Type: application/json
     "name": "test"
 }
 
-# Get request for finding user details
-GET  http://localhost:8080/api/find/user?username=gukkey
+POST http://localhost:8080/api/auth
 Content-Type: application/json
+
+{
+    "username": "madhu-sujan",
+    "password": "sujan"
+}
+
+GET http://localhost:8080/
+
+GET http://localhost:8080/api/auth/status

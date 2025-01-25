@@ -11,7 +11,7 @@ function Signin() {
     e.preventDefault();
     try {
       const request = await axios.post(
-        `http://localhost:8080/api/verify/user`,
+        `http://localhost:8080/api/auth`,
         formData,
         {
           headers: {
@@ -23,6 +23,7 @@ function Signin() {
       console.log("err", err);
     }
   }
+
   return (
     <div className="h-screen w-screen">
       <form
