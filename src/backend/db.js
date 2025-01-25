@@ -15,15 +15,16 @@ const pool = mysql.createPool({
     keepAliveInitialDelay: 0,
 })
 
-export default async function postData(name, address) {
+export async function postData(name, address) {
     let connection
     try {
         connection = await pool.getConnection()
         const sql = `INSERT INTO user_data (name, address) VALUES (?, ?)`
-        const [result] = await connection.query(sql, [name, address]);
+        const [result] = await connection.query(sql, [name, address])
         console.log(result);
     } catch (err) {
         console.log(err)
+        throw err
     } finally {
         if (connection) {
             connection.release()
@@ -31,3 +32,36 @@ export default async function postData(name, address) {
     }
 }
 
+export async function userSignup(username, hashedPassword) {
+    let connection
+    try {
+        connection = await pool.getConnection()
+        const sql = `INSERT INTO user_cred (username, hashed_password) VALUES (?, ?)`
+        const [result] = await connection.query(sql, [username, hashedPassword])
+        console.log(result)
+    } catch (err) {
+        console.log(err)
+        throw err
+    } finally {
+        if (connection) {
+            connection.release()
+        }
+    }
+}
+
+export async function findUser(username) {
+    let connection
+    try {
+        connection = await pool.getConnection()
+        const sql = `SELECT * FROM user_cred WHERE username = ?`
+        const [rows, fields] = await connection.query(sql, [username])
+        return rows
+    } catch (err) {
+        console.log(err)
+        throw err
+    } finally {
+        if (connection) {
+            connection.release()
+        }
+    }
+}

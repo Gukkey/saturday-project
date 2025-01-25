@@ -1,8 +1,8 @@
 import React from "react";
 
-function Input({ label, name, onChange = () => {} }) {
+function Input({ label, name, onChange = () => {}, className = "" }) {
   return (
-    <div className="flex flex-row gap-2">
+    <div className={`flex flex-row gap-2 ${className}`}>
       <label htmlFor={name}>{label}</label>
       <input
         name={name}

@@ -1,0 +1,20 @@
+# Post request for signup
+POST http://localhost:8080/api/signup
+Content-Type: application/json
+
+{
+    "username": "gukkey",
+    "password": "a-simple-password1"
+}
+
+# Post request for sending user details
+POST  http://localhost:8080/api/post/form
+Content-Type: application/json
+
+{
+    "name": "test"
+}
+
+# Get request for finding user details
+GET  http://localhost:8080/api/find/user?username=gukkey
+Content-Type: application/json
